@@ -1,28 +1,30 @@
-import React, { useEffect } from 'react';
-import { useLocalStorage } from './hooks/useLocalStorage';
+import { useEffect } from 'react';
+import  useLocalStorage  from './useLocalStorage';
 
 const useDarkMode = () => {
 
     const [someValue, setSomeValue] = useLocalStorage();
 
     useEffect(() => {
-       if(someValue === true) {
+      let addStyle = document.querySelector("navBar");
 
-        var style = document.getElementById("body");
-        style.classList.toggle(".dark-mode__toggle")
+       if(someValue === true) {
+        console.log(addStyle);
+        addStyle.classList.toggle("dark-mode");
 
         // code to add class 'dark-mode to body'
-        // this is done by adding to the dom directly, have done it before, but need to look up how I did it
-       }
+        // this is done by adding to the dom directly, have done it before, but need to look up how I did it   
+    }
        else {
-        var style = document.getElementById("body");
-        style.classList.toggle(".dark-mode__toggle");
+        //addStyle.classList.toggle("dark-mode");
+        //let removeStyle = document.querySelector("navBar");
+        //removeStyle.classList.toggle("dark-mode__toggle");
            // remove the class 'dark-mode from the body'
-       }
+        //return [false, setValue];
+        }
 
-       return style;
        // I feel like we need to return the setted element, but I don't know how to do that
-    })
+    }, []);
 
     const setValue = value => {
         setSomeValue(value) // not sure about this...
